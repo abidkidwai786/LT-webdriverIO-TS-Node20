@@ -1,7 +1,4 @@
 import type { Options } from '@wdio/types';
-
-
-
 export const config: Options.Testrunner = {
 
     runner: 'local',
@@ -12,6 +9,17 @@ export const config: Options.Testrunner = {
             transpileOnly: true
         }
     },
+    services: [
+        [
+          "lambdatest",
+          {
+            tunnel: false,
+            lambdatestOpts: {
+            logFile: "tunnel.log"
+            }
+          }
+        ]
+    ],
     hostname: 'hub.lambdatest.com',
     port: 80,
     path: '',
@@ -24,9 +32,6 @@ export const config: Options.Testrunner = {
         // 'path/to/excluded/files'
     ],
     maxInstances: 10,
-
-
-
     capabilities: [
         {
             browserName: "Chrome",
